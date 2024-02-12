@@ -1,28 +1,34 @@
-import './App.css';
-import Fetch from './components/fetch'
 
+
+
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Store from './components/store';
+import Checkout from './components/Checkout';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import Cart from './components/cart';
+import Login from './components/Login';
 //https://react-bootstrap.netlify.app/docs/components/placeholder/
 //import Card from 'react-bootstrap/Card';
 
 // Antons databas
 //https://cna-product-service.vercel.app/products/getAllProducts
 
-
 function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Camel Store</h1>
-            </header>
-            
-            <div className="Camel-content">
-                <h2>Get yer camels here:</h2>
-            </div>
-
-            <Fetch />
-
-        </div>
-    )
+  return (
+    <div className="App">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Store />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
