@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-//fetch data from pruduct API
-const Fetch = () => {
+//fetch data from product API
+const FetchCamels = () => {
   const [camels, setPhotos] = useState([]);
   useEffect(() => {
-    fetch('https://cna-product-service.vercel.app/products')    //https://cna-product-service.vercel.app/products/getAllProducts
+    fetch('https://cna-product-service-h5dyeke7z-antondoeps-projects.vercel.app/api/products/getAllProducts')
       .then((res) => {
         return res.json();
       })
@@ -22,4 +22,4 @@ const Fetch = () => {
   );
 };
 
-export default Fetch;
+export default FetchCamels;

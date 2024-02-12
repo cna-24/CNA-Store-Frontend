@@ -1,6 +1,3 @@
-
-
-
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Store from './components/store';
@@ -9,11 +6,6 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Cart from './components/cart';
 import Login from './components/Login';
-//https://react-bootstrap.netlify.app/docs/components/placeholder/
-//import Card from 'react-bootstrap/Card';
-
-// Antons databas
-//https://cna-product-service.vercel.app/products/getAllProducts
 
 function App() {
   return (
