@@ -1,0 +1,14 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "cna-store-frontend": {
+      "appLocation": "cammel_store",
+      "outputLocation": "build",
+      "appBuildCommand": "npm run build",
+      "run": "npm start",
+      "appDevserverUrl": "http://localhost:3000",
+      "appName": "camelstest",
+      "resourceGroup": "camelstest-rg"
+    }
+  }
+}
