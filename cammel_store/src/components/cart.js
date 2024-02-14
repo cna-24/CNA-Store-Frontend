@@ -1,6 +1,8 @@
-// src/components/Cart.js
+// Import React and other necessary dependencies
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+// Import CSS Module
+import styles from '../styles/Cart.module.css';
 
 // Example cart items
 const cartItems = [
@@ -21,19 +23,18 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h2>Your Cart</h2>
-      <ul>
+    <div className={styles.cartContainer}>
+      <h2 className={styles.cartTitle}>Your Cart</h2>
+      <ul className={styles.cartList}>
         {cartItems.map(item => (
-          <li key={item.id}>
+          <li key={item.id} className={styles.cartItem}>
             {item.name} - ${item.price} x {item.quantity}
             {/* Implement functionality to change quantity or remove items */}
           </li>
         ))}
       </ul>
-      <p>Total: ${calculateTotal(cartItems)}</p>
-      {/* Use handleCheckout function when the button is clicked */}
-      <button onClick={handleCheckout}>Checkout</button>
+      <p className={styles.total}>Total: ${calculateTotal(cartItems)}</p>
+      <button onClick={handleCheckout} className={styles.checkoutButton}>Checkout</button>
     </div>
   );
 };
