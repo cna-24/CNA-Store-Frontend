@@ -15,7 +15,7 @@ const FetchCamels = () => {
       })
       .then((data) => {
         console.log(data);
-        setPhotos(data);
+        setPhotos(data.slice(0, 15));
       });
   }, []);
   return (
