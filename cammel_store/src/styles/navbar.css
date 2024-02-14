@@ -1,51 +1,71 @@
 /* styles/Navbar.css */
 /* styles/Navbar.css */
 .navbar {
-    background: #333;
-    height: 80px;
-    display: flex;
-   
-    align-items: center;
-  }
-  
-  .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    width: 100%;
-    max-width: 600px; /* Reduced width for a narrower navbar */
-  }
-  
-  .navbar-logo {
-    color: #fff;
-    justify-self: start;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 2rem;
-    display: flex;
-   
-  }
-  
-  .navbar-menu {
-    display: flex;
-    list-style: none;
-    text-align: center;
-  
-  }
-  
-  .navbar-item {
-    height: 0 px
-    ;
-  }
-  
-  .navbar-links {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    height: 100%;
-  }
+  background: #333;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center navbar content */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width for better spacing */
+  padding: 0 20px; /* Add padding on the sides */
+}
+
+.navbar-logo {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center; /* Ensure logo is vertically centered */
+}
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+  position: relative; /* Enables absolute positioning of the search icon inside */
+}
+.search-bar input[type="text"] {
+  padding: 0.5rem;
+  width: 100%; /* Make input take up all available width */
+  /* Add padding-right to prevent text from being hidden behind the icon */
+  padding-right: 40px; /* Adjust based on the size of your search icon */
+}
+
+.search-bar button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0.7rem;
+  cursor: pointer;
+  background: none; /* Remove any default styling */
+  border: none; /* Remove any default styling */
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin: 0; /* Reset margin */
+}
+
+
+.navbar-links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
   
   /* Removed hover effects */
   /*.navbar-links:hover {
