@@ -3,9 +3,9 @@
 import React from 'react';
 import FetchCamels from './fetchCamels';
 
-import Placeholder from 'react-bootstrap/Placeholder';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+//import Placeholder from 'react-bootstrap/Placeholder';
+//import Button from 'react-bootstrap/Button';
+//import Card from 'react-bootstrap/Card';
 
 //https://react-bootstrap.netlify.app/docs/components/placeholder/
 //import Card from 'react-bootstrap/Card';
