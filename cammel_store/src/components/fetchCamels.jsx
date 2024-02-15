@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/store.css';
+import Card from 'react-bootstrap/Card';
 
 //fetch data from product API
 const FetchCamels = () => {
@@ -15,15 +16,15 @@ const FetchCamels = () => {
       })
       .then((data) => {
         console.log(data);
-        setPhotos(data.slice(0, 15));
+        setPhotos(data.slice(0, 8)); // use "setPhotos(data);" with the camels
       });
   }, []);
   return (
-    /* Visa kamelerna snyggt på sidan */
+    /* Visa kamelerna snyggt på sidan i "cards" */
     <div className='products-container'>
       {
         camels.map((photo) => (
-        <img className='product' key={photo.id} src={photo.url} alt={photo.title} />
+          <img className='product-card' key={photo.id} src={photo.url} alt={photo.title} />
         ))
       }
     </div>

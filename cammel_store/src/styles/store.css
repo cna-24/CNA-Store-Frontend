@@ -1,14 +1,20 @@
 .products-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .products-container img {
-    width: 100px;
-    margin: 10px;
+    width: 300px;
+    border-radius: 4px;
+    padding: 20px;
+    /*max-width: 800px;*/
+    margin: 20px auto;
 }
 
-/*.products-container img:hover {
-    width: 120px;
-}*/
+.products-container img:hover {
+    background-color: #ffffff;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
 
