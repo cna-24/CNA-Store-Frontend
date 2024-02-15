@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import '../styles/store.css';
-import Card from 'react-bootstrap/Card';
 
 //fetch data from product API
 const FetchCamels = () => {
