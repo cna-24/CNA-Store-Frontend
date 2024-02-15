@@ -66,6 +66,11 @@
   padding: 0.5rem 1rem;
 }
 
+.icon-spacing {
+  margin-right: 8px;
+}
+
+
   
   /* Removed hover effects */
   /*.navbar-links:hover {

@@ -18,15 +18,12 @@ const Navbar = () => {
               <ul className="navbar-menu">
                   <li className="navbar-item">
                       <Link to="/login" className="navbar-links">
-                          <FontAwesomeIcon icon={faUser} /> Login
+                          <FontAwesomeIcon icon={faUser} className="icon-spacing" /> | Login
                       </Link>
                   </li>
                   <li className="navbar-item">
-                      <Link to="/store" className="navbar-links">Store</Link>
-                  </li>
-                  <li className="navbar-item">
                       <Link to="/cart" className="navbar-links">
-                          <FontAwesomeIcon icon={faShoppingCart} /> Cart
+                          <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> | Cart 
                       </Link>
                   </li>
               </ul>

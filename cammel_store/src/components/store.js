@@ -2,6 +2,7 @@
 
 import React from 'react';
 import FetchCamels from './fetchCamels';
+import '../styles/store.css';
 
 //import Placeholder from 'react-bootstrap/Placeholder';
 //import Button from 'react-bootstrap/Button';
@@ -13,8 +14,8 @@ import FetchCamels from './fetchCamels';
 const Store = () => {
   return (
     <div>
-      <h2>Store Page</h2>
-      <p>Welcome to our store! Products will be listed here.</p>
+      <h2 className='store-h2'>Store Page</h2>
+      <p className='store-p'>Welcome to our store! Products will be listed here.</p>
 
       {/* fetch data from product API*/}
       <FetchCamels />

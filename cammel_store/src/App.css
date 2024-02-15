@@ -1,5 +1,7 @@
 .App {
-    margin: auto;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 80px;
 }
 
 .App-header {
@@ -7,6 +9,10 @@
     background-color: rgb(30,34,170);
 }
 
-.Camel-content {
-    background-color: beige;
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
+
+

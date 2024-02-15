@@ -16,5 +16,10 @@
     background-color: #ffffff;
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+
+}
+
+.store-h2, .store-p{
+    margin-left: 10px;
 }
 
