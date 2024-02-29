@@ -2,13 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 .camel-card {
-    width: 300px;
     border-radius: 4px;
     padding: 20px;
     margin: auto;
+    flex: 1 0 21%;
 }
 
 .camel-card:hover {
