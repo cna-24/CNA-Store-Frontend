@@ -1,42 +1,47 @@
-// Import React and other necessary dependencies
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// Import CSS Module
-import styles from '../styles/Cart.module.css';
-
-// Example cart items
-const cartItems = [
-  { id: 1, name: 'Product 1', price: 10, quantity: 2 },
-  { id: 2, name: 'Product 2', price: 20, quantity: 1 },
-  // Add more items as needed
-];
+import { useCart } from './CartContext'; // Adjust the path as necessary
+import styles from '../styles/Cart.module.css'; // Ensure this path matches your CSS module for the Cart
 
 const Cart = () => {
   const navigate = useNavigate(); // Initialize useNavigate
+  const { cartItems, removeFromCart } = useCart(); // Access cart items and removeFromCart function from CartContext
 
-  // Function to calculate the total price
-  const calculateTotal = (items) => items.reduce((total, item) => total + item.price * item.quantity, 0);
+  // Function to calculate the total price of cart items
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  };
 
-  // Function to handle "Checkout" button click
-  const handleCheckout = () => {
+  // Function to handle "Proceed to Checkout" button click
+  const handleProceedToCheckout = () => {
     navigate('/checkout'); // Navigate to the Checkout page
+  };
+
+  // Function to handle removing items from the cart
+  const handleRemoveFromCart = (productId) => {
+    removeFromCart(productId);
   };
 
   return (
     <div className={styles.cartContainer}>
       <h2 className={styles.cartTitle}>Your Cart</h2>
-      <ul className={styles.cartList}>
-        {cartItems.map(item => (
-          <li key={item.id} className={styles.cartItem}>
-            {item.name} - ${item.price} x {item.quantity}
-            {/* Implement functionality to change quantity or remove items */}
-          </li>
-        ))}
-      </ul>
-      <p className={styles.total}>Total: ${calculateTotal(cartItems)}</p>
-      <button onClick={handleCheckout} className={styles.checkoutButton}>Checkout</button>
+      {cartItems.length > 0 ? (
+        <ul className={styles.cartList}>
+          {cartItems.map(item => (
+            <li key={item.id} className={styles.cartItem}>
+              {item.name} - ${item.price} x {item.quantity}
+              <button onClick={() => handleRemoveFromCart(item.id)} className={styles.removeButton}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Your cart is empty.</p>
+      )}
+      <p className={styles.total}>Total: ${calculateTotal()}</p>
+      <button onClick={handleProceedToCheckout} className={styles.checkoutButton}>Proceed to Checkout</button>
     </div>
   );
 };
 
 export default Cart;
+
