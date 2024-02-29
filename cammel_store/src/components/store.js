@@ -1,26 +1,34 @@
-// src/components/Store.js
-
 import React from 'react';
 import FetchCamels from './fetchCamels';
 import '../styles/store.css';
 
-//import Placeholder from 'react-bootstrap/Placeholder';
-//import Button from 'react-bootstrap/Button';
-//import Card from 'react-bootstrap/Card';
-
-//https://react-bootstrap.netlify.app/docs/components/placeholder/
-//import Card from 'react-bootstrap/Card';
-
 const Store = () => {
+  const camels = FetchCamels();
+
+  const CamelComponent = ({ camel }) => {
+    var productName = camel.title;
+    if(productName.length > 16) productName = productName.substring(0, 16);
+
+    return (
+      <div className="camel-card">
+        <h2>{productName}</h2>
+        <img src = {camel.url} alt = "Color"></img>
+        <h3>Price: {camel.price}</h3>
+        <p>Age: {camel.age}</p>
+        <p>id: {camel.id}</p>
+
+        <button>Buy Now</button>
+        <button>Add to cart</button>
+      </div>
+    );
+  };
+
   return (
-    <div>
-      <h2 className='store-h2'>Store Page</h2>
-      <p className='store-p'>Welcome to our store! Products will be listed here.</p>
-
-      {/* fetch data from product API*/}
-      <FetchCamels />
-
-    </div>
+        <div className='products-container'>
+            {camels.map((camel, index) => (
+              <CamelComponent key={index} camel={camel} />
+            ))}
+        </div>
   );
 };
 
