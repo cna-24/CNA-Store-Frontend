@@ -31,6 +31,7 @@ function Login() {
     })
     .then(data => {
       login(username);
+      localStorage.setItem('jwt', data.token);
       navigate('/store'); 
     
     })

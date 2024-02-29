@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = (username) => {
     const user = { username };
-    console.log(username + "login function")
     setUser(user);
     Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true, sameSite: 'Lax' });
   };
@@ -26,6 +25,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     Cookies.remove('user');
+    localStorage.removeItem('jwt');
     navigate('/');
     window.location.reload();
   };
