@@ -1,48 +1,67 @@
-// src/components/Login.js
-
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Make sure to create this CSS file in your styles directory
+import { useAuth } from './CheckAuth';
+import '../styles/Login.css';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message] = useState('');
+  
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you would usually send the username and password to the server for validation
-    alert(`Login attempted with username: ${username} and password: ${password}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = { username, password };
+
+    fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Login failed. Please check your username and password.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      login(username);
+      navigate('/store'); 
+    
+    })
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2>Login placeholder</h2>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="login-button">Login</button>
+    <div>
+      <h2 style={{ textAlign: 'center' }}>Login Form</h2>
+      <form id="loginForm" onSubmit={handleSubmit} style={{ maxWidth: '300px', margin: 'auto' }}>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
       </form>
+      <div id="message" style={{ color: 'red' }}>{message}</div>
     </div>
   );
-};
+}
 
 export default Login;
