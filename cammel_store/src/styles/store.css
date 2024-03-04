@@ -28,6 +28,11 @@
     margin-left: 10px;
 }
 
+.stock {
+    color: red;
+}
+
+
 @media (max-width: 600px) {
     .products-container {
       flex-direction: column;
