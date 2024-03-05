@@ -24,8 +24,8 @@ const Store = () => {
 
     return (
       <div className="camel-card">
-        <h2>{camel.name}</h2>
-        <img src={camel.url} alt="no picture available"></img>
+        <h2>{productName}</h2>
+        {/*<img src={camel.url} alt="no picture available"></img>*/}
         <p>{camel.description}</p>
 
         {camel.quantity > 0 ? (
