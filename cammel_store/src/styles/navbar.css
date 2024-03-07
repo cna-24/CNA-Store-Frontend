@@ -1,10 +1,16 @@
 .navbar {
   background: orange;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center navbar content */
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
+
 
 .navbar-container {
   display: flex;
