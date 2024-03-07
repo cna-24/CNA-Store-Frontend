@@ -22,7 +22,7 @@ const Store = () => {
       .then((data) => {
         setCamels(data);  //REMOVE SLICE WHEN USING REAL API!!!
       })
-      .catch((error) => {
+      .catch(() => {  //error
         console.log('Error')  // ,error
       });
   }, []);
@@ -52,7 +52,7 @@ const Store = () => {
         <h2>{productName}</h2>
         <p>{camel.description}</p>
 
-        {camel.quantity != 0 ? (  //To use with real API: '>'
+        {camel.quantity > 0 ? (
           //If 'camel.quantity' is higher than 0, show the price of the camel
           <>
             <h3>Price: {camel.price}€</h3>
@@ -70,9 +70,9 @@ const Store = () => {
   const handleSort = (criteria) => {
     const sortedCamels = [...camels].sort((a, b) => {
       if (criteria === 'name') {
-        return a.name.localeCompare(b.name);  // Change 'title' to 'name' when changing API
+        return a.name.localeCompare(b.name);
       } else {
-        return a.price - b.price; // Change to 'price'
+        return a.price - b.price;
       }
     });
     setCamels(sortedCamels);
