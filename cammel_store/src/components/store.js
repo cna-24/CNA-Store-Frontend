@@ -60,7 +60,7 @@ const Store = () => {
 
     return (
       <div className="camel-card">
-        <img src={imageSrc} alt="Picture of camel"></img>   {/*To use with correct API: 'camelImageSrc' */}
+        <img src={imageSrc} alt="Camel"></img>
         <h2>{productName}</h2>
         <p>{camel.description}</p>
 
