@@ -1,12 +1,50 @@
+.full-page {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../camelImages/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#banner-text {
+    font-size: 200px;
+    margin: auto;
+    margin-bottom: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #ecc65b;
+}
+
+#selling-text {
+    font-size: 30px;
+    margin: auto;
+    margin-top: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #ecc65b;
+}
+
 .products-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding-bottom: 50px;
-    padding-top: 50px;
+    background-color: #ffffff;
 }
 
 .sort-options {
-    margin-left: 20px;
+    width: 70%;
+    padding-top: 10px;
+}
+
+#sort-select {
+    padding: 5px;
 }
 
 .card-box {

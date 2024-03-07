@@ -3,7 +3,7 @@ import React from 'react';
 import { useCart } from './CartContext'; 
 import '../styles/store.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
 const Store = () => {
@@ -82,31 +82,41 @@ const Store = () => {
   // Funktion for sorting the products on the site
   const handleSort = (criteria) => {
     const sortedCamels = [...camels].sort((a, b) => {
+      if (criteria === 'price-up') {
+        return a.price - b.price;
+      } 
+      if (criteria === 'price-down') {
+        return b.price - a.price;
+      }
       if (criteria === 'name') {
         return a.name.localeCompare(b.name);
-      } else {
-        return a.price - b.price;
       }
     });
     setCamels(sortedCamels);
   };
 
+  //<label id='sort-label'> Sort by
   return (
-    <div className='products-container'>
-      <div className='sort-options'>
-        <label>
-          Sort by:
-          <select onChange={(e) => handleSort(e.target.value)}>
-            <option value="price">Price</option>
-            <option value="name">Name</option>
-          </select>
-        </label>
+    <div className='full-page'>
+      <div className='banner'>
+        <h1 id='banner-text'>Modern Camels</h1>
+        <h2 id='selling-text'>Selling the wolds finest camels!</h2>
       </div>
+      
+      <div className='products-container'>
+        <div className='sort-options'>
+          <select onChange={(e) => handleSort(e.target.value)} id='sort-select'>
+            <option value="price-up">Price ascending</option>
+            <option value="price-down">Price descending</option>
+            <option value="name">Alphabetical</option>
+          </select>
+        </div>
 
-      <div className='card-box'>
-        {camels.map((camel, index) => (
-          <CamelComponent key={index} camel={camel} />
-        ))}
+        <div className='card-box'>
+          {camels.map((camel, index) => (
+            <CamelComponent key={index} camel={camel} />
+          ))}
+        </div>
       </div>
     </div>
   );
