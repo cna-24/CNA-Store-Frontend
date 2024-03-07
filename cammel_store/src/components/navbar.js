@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import '../styles/navbar.css';
 import { useAuth } from './CheckAuth';
+import { useSearch } from './SearchContext';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const { user, logout, login } = useAuth();
+    const { setSearchTerm } = useSearch();
     const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
@@ -72,7 +74,7 @@ const Navbar = () => {
                     Camel Store
                 </Link>
                 <div className="search-bar">
-                    <input type="text" placeholder="Search..." />
+                <input type="text" placeholder="Search..." onChange={(e) => setSearchTerm(e.target.value)} />
                     <button type="submit"><FontAwesomeIcon icon={faSearch} /></button>
                 </div>
                 <ul className="navbar-menu">

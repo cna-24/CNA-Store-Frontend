@@ -1,18 +1,17 @@
-import React from 'react';
-//import FetchCamels from './fetchCamels';
-import { useCart } from './CartContext'; 
+import React, { useState, useEffect } from 'react';
+import { useCart } from './CartContext';
+import { useSearch } from './SearchContext'; // Make sure this path matches where you've placed your SearchContext
 import '../styles/store.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
 
 const Store = () => {
   const { addToCart } = useCart();
+  const { searchTerm } = useSearch();
   const [camels, setCamels] = useState([]);
 
-  // Fetch products from API
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_PRODUCT_API}/products`)    //fetch('https://jsonplaceholder.typicode.com/photos')
+    fetch(`${process.env.REACT_APP_PRODUCT_API}/products`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch');
@@ -20,10 +19,10 @@ const Store = () => {
         return res.json();
       })
       .then((data) => {
-        setCamels(data);  //REMOVE SLICE WHEN USING REAL API!!!
+        setCamels(data);
       })
-      .catch(() => {  //error
-        console.log('Error')  // ,error
+      .catch(() => {
+        console.log('Error fetching data');
       });
   }, []);
 
@@ -37,49 +36,43 @@ const Store = () => {
     }
   };
 
-
   const CamelComponent = ({ camel }) => {
-    var productName = camel.name  //To use with correct API: camel.name;
+    let productName = camel.name;
     if (productName.length > 16) productName = productName.substring(0, 16);
 
+    const [imageSrc, setImageSrc] = useState('');
 
-    const [imageSrc, setImageSrc] = React.useState('');
-
-    React.useEffect(() => {
-        loadImage(camel.product_id).then(setImageSrc);
+    useEffect(() => {
+      loadImage(camel.product_id).then(setImageSrc);
     }, [camel.product_id]);
 
     const handleAddToCart = () => {
       const itemToAdd = {
-        id: camel.id, // Ensure camel has a unique ID
+        id: camel.id,
         name: productName,
-        price: camel.price, 
-        quantity: 1 
+        price: camel.price,
+        quantity: 1
       };
       addToCart(itemToAdd);
-    }
+    };
 
     return (
       <div className="camel-card">
-        <img src={imageSrc} alt="Camel"></img>
+        <img src={imageSrc} alt={camel.name} />
         <h2>{productName}</h2>
         <p>{camel.description}</p>
-
         {camel.quantity > 0 ? (
-          //If 'camel.quantity' is higher than 0, show the price of the camel
           <div className='price'>
             <h3>Price: {camel.price}€</h3>
             <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
           </div>
-        ): (
-          <h3 className='stock'>Out of stock!</h3>  //Else if camel is out of stock
+        ) : (
+          <h3 className='stock'>Out of stock!</h3>
         )}
-
       </div>
     );
   };
 
-  // Funktion for sorting the products on the site
   const handleSort = (criteria) => {
     const sortedCamels = [...camels].sort((a, b) => {
       if (criteria === 'name') {
@@ -90,6 +83,8 @@ const Store = () => {
     });
     setCamels(sortedCamels);
   };
+
+  const filteredCamels = camels.filter(camel => camel.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <div className='products-container'>
@@ -104,7 +99,7 @@ const Store = () => {
       </div>
 
       <div className='card-box'>
-        {camels.map((camel, index) => (
+        {filteredCamels.map((camel, index) => (
           <CamelComponent key={index} camel={camel} />
         ))}
       </div>

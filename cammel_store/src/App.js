@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/CheckAuth';
+import { SearchProvider } from './components/SearchContext';
 import { CartProvider } from './components/CartContext'; // Import CartProvider
 import Store from './components/store';
 import Checkout from './components/Checkout';
@@ -13,6 +14,7 @@ import Login from './components/Login';
 function App() {
   return (
     <AuthProvider>
+      <SearchProvider>
       <CartProvider> {/* Wrap components with CartProvider */}
         <div className="App">
           <Navbar />
@@ -26,6 +28,7 @@ function App() {
           <Footer />
         </div>
       </CartProvider>
+      </SearchProvider>
     </AuthProvider>
   );
 }
