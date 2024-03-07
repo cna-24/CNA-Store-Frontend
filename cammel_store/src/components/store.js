@@ -32,9 +32,21 @@ const Store = () => {
     var productName = camel.name  //To use with correct API: camel.name;
     if (productName.length > 16) productName = productName.substring(0, 16);
 
-    //const camelImageSrc = require(`../camelImages/CAM-00${camel.id}.jpg`).default;   //`../camel_images/${camel.product_id}.jpg`
-    //console.log(camel.id)
-    //console.log(camelImageSrc)
+    const loadImage = async () => {
+      try {
+          const { default: camelImageSrc } = await import(`../camelImages/${camel.product_id}.jpg`);
+          return camelImageSrc;
+      } catch (error) {
+          console.error('Error loading image:', error);
+          return ''; // Return a default image source or handle the error accordingly
+      }
+    };
+
+    const [imageSrc, setImageSrc] = React.useState('');
+
+    React.useEffect(() => {
+        loadImage().then(setImageSrc);
+    }, [camel.product_id]);
 
     const handleAddToCart = () => {
       const itemToAdd = {
@@ -48,16 +60,16 @@ const Store = () => {
 
     return (
       <div className="camel-card">
-        {/*<img src={camelImageSrc} alt="Picture of camel"></img>*/}   {/*To use with correct API: 'camelImageSrc' */}
+        <img src={imageSrc} alt="Picture of camel"></img>   {/*To use with correct API: 'camelImageSrc' */}
         <h2>{productName}</h2>
         <p>{camel.description}</p>
 
         {camel.quantity > 0 ? (
           //If 'camel.quantity' is higher than 0, show the price of the camel
-          <>
+          <div className='price'>
             <h3>Price: {camel.price}€</h3>
             <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
-          </>
+          </div>
         ): (
           <h3 className='stock'>Out of stock!</h3>  //Else if camel is out of stock
         )}

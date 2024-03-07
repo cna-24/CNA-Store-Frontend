@@ -15,19 +15,23 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    padding-left: 100px;
 }
 
 .camel-card {
     border-radius: 4px;
     padding: 20px;
-    flex: 0 1 25%;
+    flex: 0 1 22%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #f1f1f1;
+    margin: 10px;
 }
 
 .camel-card img {
-    max-width: 250px;
+    width: 250px;
+    height: 200px;
     align-self: center;
 }
 
@@ -37,9 +41,16 @@
     cursor: pointer;
 }
 
-/*#cartButton {
-    
-}*/
+.price {
+    display: flex;
+    flex-direction: row;
+}
+
+#cartButton {
+    width: 20%;
+    height: 40%;
+    margin: auto;
+}
 
 .store-h2, .store-p{
     margin-left: 10px;
