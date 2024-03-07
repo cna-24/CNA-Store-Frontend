@@ -72,7 +72,7 @@ const Store = () => {
       if (criteria === 'name') {
         return a.name.localeCompare(b.name);  // Change 'title' to 'name' when changing API
       } else {
-        return a.id - b.id; // Change to 'price'
+        return a.price - b.price; // Change to 'price'
       }
     });
     setCamels(sortedCamels);
