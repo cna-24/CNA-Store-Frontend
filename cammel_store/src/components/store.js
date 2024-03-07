@@ -83,6 +83,8 @@ const Store = () => {
       }
       if (criteria === 'name') {
         return a.name.localeCompare(b.name);
+      } else {
+        return 0;
       }
     });
     setCamels(sortedCamels);
