@@ -27,25 +27,26 @@ const Store = () => {
       });
   }, []);
 
+  const loadImage = async (productId) => {
+    try {
+      const { default: camelImageSrc } = await import(`../camelImages/${productId}.jpg`);
+      return camelImageSrc;
+    } catch (error) {
+      console.error('Error loading image:', error);
+      return '';
+    }
+  };
+
 
   const CamelComponent = ({ camel }) => {
     var productName = camel.name  //To use with correct API: camel.name;
     if (productName.length > 16) productName = productName.substring(0, 16);
 
-    const loadImage = async () => {
-      try {
-          const { default: camelImageSrc } = await import(`../camelImages/${camel.product_id}.jpg`);
-          return camelImageSrc;
-      } catch (error) {
-          console.error('Error loading image:', error);
-          return ''; // Return a default image source or handle the error accordingly
-      }
-    };
 
     const [imageSrc, setImageSrc] = React.useState('');
 
     React.useEffect(() => {
-        loadImage().then(setImageSrc);
+        loadImage(camel.product_id).then(setImageSrc);
     }, [camel.product_id]);
 
     const handleAddToCart = () => {
