@@ -45,25 +45,44 @@ const Cart = () => {
     });
   };
   
-  const handleUpdateQuantity = (async () => {
-
-    const requestData = {
-        quantity: 4,
-        price: 150
-    };
-
-    const res = await fetch("https://cartserviceem.azurewebsites.net/cart/14", {
+  const handleUpdateQuantity = async (productId, quantity) => {
+    const product = cartItems.find(item => item.id === productId);
+    if (!product) {
+      return;
+    }
+  
+    try {
+      const requestData = {
+        product: product.id, 
+        quantity: quantity,
+        price: product.price 
+      };
+  
+      const response = await fetch(`${process.env.REACT_APP_CART_SERVICE_URL}/cart/${productId}`, {
         method: 'PATCH',
         headers: {
-            'Authorization': `${token}`, // user_id 3 (username123)
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`, // Adjust based on the required format
         },
         body: JSON.stringify(requestData)
-    })
-
-    console.log(await res.json())
-
-})(); 
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update cart item');
+      }
+  
+      // Assuming you want to update the local state after successful response
+      setCartItems(currentItems => currentItems.map(item =>
+        item.id === productId ? { ...item, quantity: quantity } : item
+      ));
+      console.log("Quantity updated for product ID:", productId);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  
+  
 
   return (
     <div className={styles.cartContainer}>
