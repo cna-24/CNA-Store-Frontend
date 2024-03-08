@@ -1,98 +1,67 @@
-import React from 'react';
-//import FetchCamels from './fetchCamels';
-import { useCart } from './CartContext'; 
+import React, { useState, useEffect } from 'react';
+import { useCart } from './CartContext';
 import '../styles/store.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
 
 const Store = () => {
   const { addToCart } = useCart();
-  const [camels, setCamels] = useState([]);
+  const [products, setProducts] = useState([]);
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJ1c2VybmFtZTEyMyIsImFkbWluIjpmYWxzZX0.-eHTvpVcB3jft1rB1aPmGD0I1pWengh3-junesfhCZ8'; // Replace with actual token retrieval logic
 
-  // Fetch products from API
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_PRODUCT_API}/products`)    //fetch('https://jsonplaceholder.typicode.com/photos')
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to fetch');
-        }
+    fetch(`${process.env.REACT_APP_PRODUCT_API}/products`)
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
         return res.json();
       })
-      .then((data) => {
-        setCamels(data);  //REMOVE SLICE WHEN USING REAL API!!!
-      })
-      .catch(() => {  //error
-        console.log('Error')  // ,error
-      });
+      .then(setProducts)
+      .catch(error => console.error('Error:', error));
   }, []);
 
-
-  const CamelComponent = ({ camel }) => {
-    var productName = camel.name  //To use with correct API: camel.name;
-    if (productName.length > 16) productName = productName.substring(0, 16);
-
-    //const camelImageSrc = require(`../camelImages/CAM-00${camel.id}.jpg`).default;   //`../camel_images/${camel.product_id}.jpg`
-    //console.log(camel.id)
-    //console.log(camelImageSrc)
-
-    const handleAddToCart = () => {
-      const itemToAdd = {
-        id: camel.id, // Ensure camel has a unique ID
-        name: productName,
-        price: camel.price, 
-        quantity: 1 
-      };
-      addToCart(itemToAdd);
-    }
-
-    return (
-      <div className="camel-card">
-        {/*<img src={camelImageSrc} alt="Picture of camel"></img>*/}   {/*To use with correct API: 'camelImageSrc' */}
-        <h2>{productName}</h2>
-        <p>{camel.description}</p>
-
-        {camel.quantity > 0 ? (
-          //If 'camel.quantity' is higher than 0, show the price of the camel
-          <>
-            <h3>Price: {camel.price}€</h3>
-            <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
-          </>
-        ): (
-          <h3 className='stock'>Out of stock!</h3>  //Else if camel is out of stock
-        )}
-
-      </div>
-    );
-  };
-
-  // Funktion for sorting the products on the site
-  const handleSort = (criteria) => {
-    const sortedCamels = [...camels].sort((a, b) => {
-      if (criteria === 'name') {
-        return a.name.localeCompare(b.name);
+  const handleAddToCart = product => {
+    fetch(`${process.env.REACT_APP_CART_SERVICE_URL}/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`, // Authorization header
+      },
+      body: JSON.stringify({
+        
+        product: product.id, // Use the unique identifier for the product
+        quantity: 1,
+        price: product.price,
+      }),
+    })
+    .then(response => {
+      if (response.status === 201) {
+        return response.json(); // Parse the JSON response body
       } else {
-        return a.price - b.price;
+        throw new Error('Product not added to cart');
       }
-    });
-    setCamels(sortedCamels);
-  };
+    })
+    .then(data => {
+        addToCart(product); // Update the local cart context
+        console.log("Product added to cart:", data); // Log the data from the response
+    })
+    .catch(error => console.error('Error:', error));
+};
+
 
   return (
-    <div className='products-container'>
-      <div className='sort-options'>
-        <label>
-          Sort by:
-          <select onChange={(e) => handleSort(e.target.value)}>
-            <option value="price">Price</option>
-            <option value="name">Name</option>
-          </select>
-        </label>
-      </div>
-
-      <div className='card-box'>
-        {camels.map((camel, index) => (
-          <CamelComponent key={index} camel={camel} />
+    <div className="products-container">
+      {/* ...your sorting and other components here */}
+      <div className="card-box">
+        {products.map(product => (
+          <div key={product.id} className="product-card">
+            {/* ...product image and details */}
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <h3>Price: {product.price}€</h3>
+            <button onClick={() => handleAddToCart(product)} className="cart-button">
+              <FontAwesomeIcon icon={faShoppingCart}/> Add to Cart
+            </button>
+          </div>
         ))}
       </div>
     </div>

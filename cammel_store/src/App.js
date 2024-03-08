@@ -13,7 +13,7 @@ import Login from './components/Login';
 function App() {
   return (
     <AuthProvider>
-      <CartProvider> {/* Wrap components with CartProvider */}
+      <CartProvider> {}
         <div className="App">
           <Navbar />
           <Routes>
