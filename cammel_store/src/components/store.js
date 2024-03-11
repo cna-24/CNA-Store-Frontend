@@ -69,16 +69,18 @@ const Store = () => {
       <>
         <div className="camel-card" onClick={openModal}>
           <img src={imageSrc} alt={camel.name} />
-          <h2>{productName}</h2>
-          <p>{camel.description}</p>
-          {camel.quantity > 0 ? (
-            <div className='price'>
-              <h3>Price: {camel.price}€</h3>
-              <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
-            </div>
-          ) : (
-            <h3 className='stock'>Out of stock!</h3>
-          )}
+          <div className='camel-info'>
+            <h2>{productName}</h2>
+            <p>{camel.description}</p>
+            {camel.quantity > 0 ? (
+              <div className='price'>
+                <h3>Price: {camel.price}€</h3>
+                <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
+              </div>
+            ) : (
+              <h3 className='stock'>Sold out!</h3>
+            )}
+          </div>
         </div>
 
         {/* Open product bigger in a modal when clicked*/}
@@ -97,7 +99,7 @@ const Store = () => {
                       <button onClick={() => handleAddToCart(camel)} id='modalCartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
                     </div>
                   ) : (
-                    <h3 className='modalStock'>Out of stock!</h3>
+                    <h3 className='modalStock'>Sold out!</h3>
                   )}
                 </div>
               </div>
