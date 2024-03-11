@@ -7,7 +7,8 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 const Store = () => {
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJ1c2VybmFtZTEyMyIsImFkbWluIjpmYWxzZX0.-eHTvpVcB3jft1rB1aPmGD0I1pWengh3-junesfhCZ8'; // Replace with actual token retrieval logic
+  const token = process.env.REACT_APP_API_TOKEN;
+
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_PRODUCT_API}/products`)
