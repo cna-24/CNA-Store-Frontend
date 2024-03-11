@@ -149,6 +149,12 @@
     font-size: 30px;
   }
 
+  .modalStock {
+    margin-top: auto;
+    font-size: 30px;
+    color: red;
+  }
+
   #modalCartButton {
     margin: auto;
     margin-right: 0;

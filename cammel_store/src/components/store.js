@@ -97,7 +97,7 @@ const Store = () => {
                       <button onClick={() => handleAddToCart(camel)} id='modalCartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
                     </div>
                   ) : (
-                    <h3 className='stock'>Out of stock!</h3>
+                    <h3 className='modalStock'>Out of stock!</h3>
                   )}
                 </div>
               </div>
@@ -151,22 +151,6 @@ const Store = () => {
       </div>
     </div>
   );
-
-  // Function to open the product modal
-  function openModal() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
-
-    // Populate modal content with card details
-    var modalContent = document.getElementById("modalContent");
-    modalContent.innerHTML = document.querySelector('.camel-card').innerHTML;
-  }
-
-  // Close the modal when the user clicks on the 'x' button
-  document.querySelector(".close").addEventListener("click", function() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-  });
 };
 
 export default Store;
