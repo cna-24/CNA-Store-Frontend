@@ -40,6 +40,7 @@ const Store = () => {
     let productName = camel.name;
     if (productName.length > 16) productName = productName.substring(0, 16);
 
+    const [modalOpen, setModalOpen] = useState(false);
     const [imageSrc, setImageSrc] = useState('');
 
     useEffect(() => {
@@ -56,20 +57,54 @@ const Store = () => {
       addToCart(itemToAdd);
     };
 
+    const openModal = () => {
+      setModalOpen(true);
+    };
+
+    const closeModal = () => {
+      setModalOpen(false);
+    };
+
     return (
-      <div className="camel-card">
-        <img src={imageSrc} alt={camel.name} />
-        <h2>{productName}</h2>
-        <p>{camel.description}</p>
-        {camel.quantity > 0 ? (
-          <div className='price'>
-            <h3>Price: {camel.price}€</h3>
-            <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
+      <>
+        <div className="camel-card" onClick={openModal}>
+          <img src={imageSrc} alt={camel.name} />
+          <h2>{productName}</h2>
+          <p>{camel.description}</p>
+          {camel.quantity > 0 ? (
+            <div className='price'>
+              <h3>Price: {camel.price}€</h3>
+              <button onClick={handleAddToCart} id='cartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
+            </div>
+          ) : (
+            <h3 className='stock'>Out of stock!</h3>
+          )}
+        </div>
+
+        {/* Open product bigger in a modal when clicked*/}
+        {modalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeModal}>&times;</span>
+              <div className='modal-product-content'>
+                <img src={imageSrc} alt={camel.name} />
+                <div className='modal-text'>
+                  <h2>{camel.name}</h2>
+                  <p>{camel.description}</p>
+                  {camel.quantity > 0 ? (
+                    <div className='modal-price'>
+                      <h3>Price: {camel.price}€</h3>
+                      <button onClick={() => handleAddToCart(camel)} id='modalCartButton'><FontAwesomeIcon icon={faShoppingCart}/></button>
+                    </div>
+                  ) : (
+                    <h3 className='stock'>Out of stock!</h3>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        ) : (
-          <h3 className='stock'>Out of stock!</h3>
         )}
-      </div>
+      </>
     );
   };
 
@@ -116,6 +151,22 @@ const Store = () => {
       </div>
     </div>
   );
+
+  // Function to open the product modal
+  function openModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    // Populate modal content with card details
+    var modalContent = document.getElementById("modalContent");
+    modalContent.innerHTML = document.querySelector('.camel-card').innerHTML;
+  }
+
+  // Close the modal when the user clicks on the 'x' button
+  document.querySelector(".close").addEventListener("click", function() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  });
 };
 
 export default Store;

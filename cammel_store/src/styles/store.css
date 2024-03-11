@@ -45,6 +45,7 @@
 
 #sort-select {
     padding: 5px;
+    border-radius: 5px;
 }
 
 .card-box {
@@ -59,6 +60,7 @@
 .camel-card {
     border-radius: 4px;
     padding: 20px;
+    padding-bottom: 0;
     flex: 0 1 22%;
     box-sizing: border-box;
     display: flex;
@@ -82,13 +84,96 @@
 .price {
     display: flex;
     flex-direction: row;
+    margin-top: auto;
 }
 
 #cartButton {
     width: 20%;
     height: 40%;
     margin: auto;
+    margin-right: 0;
 }
+
+
+
+
+
+/* Modal styles */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal img {
+    width: 700px;
+    height: 500px;
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  .modal-product-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .modal-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    width: 100%;
+  }
+
+  .modal-text h2 {
+    font-size: 40px;
+  }
+
+  .modal-price {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .modal-price h3 {
+    font-size: 30px;
+  }
+
+  #modalCartButton {
+    margin: auto;
+    margin-right: 0;
+    padding: 10px;
+    width: 80px;
+}
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+
+
+
 
 .store-h2, .store-p{
     margin-left: 10px;
