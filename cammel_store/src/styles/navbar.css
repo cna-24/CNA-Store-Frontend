@@ -71,6 +71,12 @@
   padding: 0.5rem 1rem;
 }
 
+.register-links {
+  color: #007BFF;
+  display: flex;
+  text-decoration: none;
+}
+
 .icon-spacing {
   margin-right: 8px;
 }

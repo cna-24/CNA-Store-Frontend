@@ -14,6 +14,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message] = useState('');
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -93,11 +94,13 @@ const Navbar = () => {
                                     <div className="login-dropdown" onClick={handleDropdownClick}>
                                         <form onSubmit={handleSubmit}>
                                             <label htmlFor="username">Username:</label>
-                                            <input type="text" id="username" name="username" required onChange={e => setUsername(e.target.value)} />
+                                            <input type="text" id="username" name="username" required value={username} onChange={e => setUsername(e.target.value)} />
                                             <label htmlFor="password">Password:</label>
-                                            <input type="password" id="password" name="password" required onChange={e => setPassword(e.target.value)} />
+                                            <input type="password" id="password" name="password" required value={password} onChange={e => setPassword(e.target.value)} />
                                             <button type="submit">Login</button>
                                         </form>
+                                        <div id="message" style={{ color: 'red' }}>{message}</div>
+                                        <Link to="/register" className="register">Register</Link>
                                     </div>
                                 )}
                             </div>
