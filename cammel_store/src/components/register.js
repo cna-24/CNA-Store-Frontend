@@ -32,7 +32,8 @@ function Register() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
+        email: email
       })
     })
     .then(response => {
