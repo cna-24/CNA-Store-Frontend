@@ -116,14 +116,10 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-
-  .modal img {
-    width: 700px;
-    height: 500px;
-    border-radius: 5px;
-  }
   
   .modal-content {
+    display: flex;
+    flex-direction: row;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -132,9 +128,10 @@
     border-radius: 5px;
   }
 
-  .modal-product-content {
-    display: flex;
-    flex-direction: row;
+  .modal img {
+    width: 700px;
+    height: 500px;
+    border-radius: 5px;
   }
 
   .modal-text {
@@ -168,7 +165,7 @@
     margin: auto;
     margin-right: 0;
     padding: 10px;
-    width: 80px;
+    width: 120px;
 }
   
   .close {
