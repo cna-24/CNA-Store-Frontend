@@ -16,7 +16,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message] = "Login failed. Please check your username and password.";
+    const [message] = useState('');
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -55,7 +55,7 @@ const Navbar = () => {
         })
             .then(response => {
                 if (!response.ok) {
-                    <div id="message" style={{ color: 'red' }}>{message}</div>
+                    throw new Error(message);
                 }
                 return response.json();
             })
@@ -102,7 +102,6 @@ const Navbar = () => {
                                             <input type="password" id="password" name="password" required value={password} onChange={e => setPassword(e.target.value)} />
                                             <button type="submit">Login</button>
                                         </form>
-                                        
                                         <Link to="/register" className="register">Register</Link>
                                     </div>
                                 )}
