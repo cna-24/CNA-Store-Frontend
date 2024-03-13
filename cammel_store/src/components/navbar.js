@@ -12,9 +12,7 @@ import camelLogo from '../camelImages/camellogo-transformed-removebg-preview.png
 const Navbar = () => {
     const { user, logout, login } = useAuth();
     const { setSearchTerm } = useSearch();
-    const { cartItems, setCartItems, } = useCart();
-    const token = localStorage.getItem('jwt');
-
+    const { cartItems, updateQuantity } = useCart();
     const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
     const [showCartDropdown, setShowCartDropdown] = useState(false);
     const hideDropdownTimeoutRef = useRef(null);
@@ -79,70 +77,7 @@ const Navbar = () => {
                 setMessage('Wrong username or password');
             });
     };
-    const handleRemoveFromCart = async (productId) => {
-        
-        try {
-          const response = await fetch(`${process.env.REACT_APP_CART_SERVICE_URL}/cart/${productId}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-          });
-      
-          if (!response.ok) {
-            throw new Error(`Failed to delete product from cart. Status: ${response.status}`);
-          }
-        
-          // Update the cart items in state
-          setCartItems(currentItems => currentItems.filter(item => item.id !== productId));
-        } catch (error) {
-          console.error('Error removing product from cart:', error);
-        }
-      };
-      const handleUpdateQuantityAndPrice = async (productId, change) => {
-        const token = localStorage.getItem('jwt'); // Token retrieval
-        const productToUpdate = cartItems.find(item => item.id === productId);
-      
-        if (!productToUpdate) {
-          console.error("Product not found in cart:", productId);
-          return;
-        }
-      
-        let newQuantity = productToUpdate.quantity + change;
-        // Check if backend handles new price calculation to decide if this line is needed
-        let newPrice = productToUpdate.unitPrice * newQuantity;
-      
-        if (newQuantity <= 0) {
-          handleRemoveFromCart(productId);
-          return;
-        }
-      
-        try {
-          const response = await fetch(`${process.env.REACT_APP_CART_SERVICE_URL}/cart/${productId}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              quantity: newQuantity,
-              price: newPrice, // Consider if your backend expects this or calculates itself
-            }),
-          });
-      
-          if (!response.ok) {
-            throw new Error(`Failed to update cart item. Status: ${response.status}`);
-          }
-      
-          // Optionally fetch the updated cart or directly update the state if the backend returns the updated item/cart
-          // Example: setCartItems(updatedCart); assuming the API returns the updated cart
-        } catch (error) {
-          console.error("Error updating cart item:", error);
-        }
-      };
-      
-      
+
     const showDropdown = () => {
         clearTimeout(hideDropdownTimeoutRef.current);
         setShowCartDropdown(true);
@@ -210,37 +145,33 @@ const Navbar = () => {
 </Link>
 
 
-{showCartDropdown && (
-    <div className="cart-dropdown">
-        {cartItems.length > 0 ? (
-            <>
-                {cartItems.map((item) => (
-                    <div key={item.id} className="cart-item-dropdown">
-                        <div className="cart-item-info">
-                            <span>{item.name} | Price: €{item.price.toFixed(2)}</span>
-                            <div className="cart-item-controls">
-                                <button onClick={() => handleUpdateQuantityAndPrice(item.id, -1)}>-</button>
-                                <span>Qty: {item.quantity}</span>
-                                <button onClick={() => handleUpdateQuantityAndPrice(item.id, 1)}>+</button>
-                                <button onClick={() => handleRemoveFromCart(item.id)} className="remove-item">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-                <div className="cart-total">
-                    Total: €{calculateTotalCost()}
-                </div>
-            </>
-        ) : (
-            <span>Your cart is empty.</span>
-        )}
-        <div className={`cart-dropdown-actions ${cartItems.length > 0 ? 'no-top-border' : ''}`}>
-            <button className="checkout-button" onClick={() => navigate('/cart')}>Proceed to Checkout →</button>
-        </div>
-    </div>
-)}
 
-    
+    {showCartDropdown && (
+        <div className="cart-dropdown">
+            {cartItems.length > 0 ? (
+                <>
+                    {cartItems.map((item) => (
+                        <div key={item.id} className="cart-item-dropdown">
+                            <div className="cart-item-controls">
+                                <button onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}>-</button>
+                                <span className="item-quantity">{item.quantity}</span>
+                                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                            </div>
+                            <span>{item.name} | {item.price.toFixed(2)}€</span>
+                        </div>
+                    ))}
+                    <div className="cart-total">
+                        Total: {calculateTotalCost()}€
+                    </div>
+                </>
+            ) : (
+                <span>Your cart is empty.</span>
+            )}
+            <div className={`cart-dropdown-actions ${cartItems.length > 0 ? 'no-top-border' : ''}`}>
+                <button className="checkout-button" onClick={() => navigate('/cart')}>Proceed to Checkout →</button>
+        </div>
+                            </div>
+                        )}
                     </li>
                 </ul>
             </div>
