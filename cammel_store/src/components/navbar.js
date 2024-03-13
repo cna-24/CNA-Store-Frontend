@@ -55,7 +55,7 @@ const Navbar = () => {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(message);
+                    <div id="message" style={{ color: 'red' }}>{message}</div>
                 }
                 return response.json();
             })
@@ -102,7 +102,7 @@ const Navbar = () => {
                                             <input type="password" id="password" name="password" required value={password} onChange={e => setPassword(e.target.value)} />
                                             <button type="submit">Login</button>
                                         </form>
-                                        <div id="message" style={{ color: 'red' }}>{message}</div>
+                                        
                                         <Link to="/register" className="register">Register</Link>
                                     </div>
                                 )}
