@@ -6,8 +6,7 @@ import styles from '../styles/Cart.module.css';
 const Cart = () => {
   const navigate = useNavigate();
   const { cartItems, setCartItems } = useCart();
-  const token = process.env.REACT_APP_API_TOKEN;
-
+  const token = localStorage.getItem('jwt');
 
   const calculateTotalCost = () => {
     return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);

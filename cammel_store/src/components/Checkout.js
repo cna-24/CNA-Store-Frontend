@@ -19,9 +19,9 @@ const Checkout = () => {
     };
 
     const token = process.env.REACT_APP_API_TOKEN; // Use your actual token
-
+  //const token = localStorage.getItem('jwt');
     try {
-      const response = await fetch('https://cna-order-service.azurewebsites.net/orders', {
+      const response = await fetch(process.env.REACT_APP_ORDER_SERVICE_URL, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
