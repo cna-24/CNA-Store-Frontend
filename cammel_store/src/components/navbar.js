@@ -80,6 +80,10 @@ const Navbar = () => {
         clearTimeout(hideDropdownTimeoutRef.current);
         setShowCartDropdown(true);
     };
+    const totalItemsInCart = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+      };
+      
     const calculateTotalCost = () => {
         return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
       };
@@ -131,6 +135,7 @@ const Navbar = () => {
                     <li className="navbar-item" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
     <Link to="/cart" className="navbar-links">
         <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> | Cart
+        {totalItemsInCart() > 0 && <span className="cart-item-count">{totalItemsInCart()}</span>} | Cart
     </Link>
     {showCartDropdown && (
         <div className="cart-dropdown">
