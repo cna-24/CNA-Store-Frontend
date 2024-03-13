@@ -96,7 +96,7 @@ const Cart = () => {
                 <span>{item.quantity}</span>
                 <button onClick={() => handleUpdateQuantityAndPrice(item.id, +1)} className={styles.quantityButton}>+</button>
               </div>
-              <span className={styles.productDetails}>{item.name} - ${item.price}</span>
+              <span className={styles.productDetails}>{item.name} | ${item.price}</span>
               <button onClick={() => handleRemoveFromCart(item.id)} className={styles.removeButton}>Remove</button>
             </li>
           ))}

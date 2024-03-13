@@ -143,18 +143,18 @@ const Navbar = () => {
                                 <span className="item-quantity">{item.quantity}</span>
                                 <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                             </div>
-                            <span>{item.name} - ${item.price.toFixed(2)}</span>
+                            <span>{item.name} | {item.price.toFixed(2)}€</span>
                         </div>
                     ))}
                     <div className="cart-total">
-                        Total: ${calculateTotalCost()}
+                        Total: {calculateTotalCost()}€
                     </div>
                 </>
             ) : (
                 <span>Your cart is empty.</span>
             )}
             <div className={`cart-dropdown-actions ${cartItems.length > 0 ? 'no-top-border' : ''}`}>
-                <button className="checkout-button" onClick={() => navigate('/checkout')}>Proceed to Checkout →</button>
+                <button className="checkout-button" onClick={() => navigate('/cart')}>Proceed to Checkout →</button>
         </div>
                             </div>
                         )}
