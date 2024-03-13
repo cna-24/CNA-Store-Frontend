@@ -25,12 +25,32 @@ export const CartProvider = ({ children }) => {
         );
     };
 
+    const updateQuantity = (productId, quantity) => {
+        setCartItems(currentItems =>
+            currentItems.map(item =>
+                item.id === productId ? { ...item, quantity: quantity } : item
+            ).filter(item => item.quantity > 0) // Optionally remove item if quantity is 0
+        );
+    };
+
     const clearCart = () => {
         setCartItems([]);
     };
 
+    const calculateTotalCost = () => {
+        return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+    };
+
     return (
-        <CartContext.Provider value={{ cartItems, setCartItems, addToCart, removeFromCart, clearCart }}>
+        <CartContext.Provider value={{ 
+            cartItems, 
+            setCartItems, 
+            addToCart, 
+            removeFromCart, 
+            updateQuantity, 
+            clearCart, 
+            calculateTotalCost 
+        }}>
             {children}
         </CartContext.Provider>
     );
