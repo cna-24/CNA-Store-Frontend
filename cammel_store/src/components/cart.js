@@ -96,7 +96,7 @@ const Cart = () => {
                 <span>{item.quantity}</span>
                 <button onClick={() => handleUpdateQuantityAndPrice(item.id, +1)} className={styles.quantityButton}>+</button>
               </div>
-              <span className={styles.productDetails}>{item.name} | ${item.price}</span>
+              <span className={styles.productDetails}>{item.name} | {item.price}€</span>
               <button onClick={() => handleRemoveFromCart(item.id)} className={styles.removeButton}>Remove</button>
             </li>
           ))}
@@ -104,7 +104,7 @@ const Cart = () => {
       ) : (
         <p>Your cart is empty.</p>
       )}
-      <p className={styles.total}>Total: ${calculateTotalCost()}</p>
+      <p className={styles.total}>Total: {calculateTotalCost()}€</p>
       <button onClick={handleProceedToCheckout} className={styles.checkoutButton}>Proceed to Checkout</button>
     </div>
   );

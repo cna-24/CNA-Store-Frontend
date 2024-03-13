@@ -88,7 +88,7 @@ const Checkout = () => {
             {item.quantity} x {item.name} | {item.price}€
           </div>
         ))}
-        <p className={styles.total}>Total: ${calculateTotalCost()}</p>
+        <p className={styles.total}>Total: {calculateTotalCost()}€</p>
       </div>
       <h2 className={styles.checkoutTitle}>Checkout</h2>
       <p>Name: {userName}</p>
