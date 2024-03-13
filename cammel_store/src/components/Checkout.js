@@ -39,8 +39,9 @@ const Checkout = () => {
   }, []);
 
   const calculateTotalCost = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,7 +93,7 @@ const Checkout = () => {
       <p>Name: {userName}</p>
       <p>Email: {userEmail}</p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="address">Address:</label>
+        <label htmlFor="address">Delivery address:</label>
         <input
           type="text"
           id="address"
