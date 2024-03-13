@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = async (productId, newQuantity) => {
-        const token = process.env.REACT_APP_API_TOKEN;
+        const token = localStorage.getItem('jwt');
         // Assume each item in cartItems includes a 'unitPrice' property
         setCartItems(currentItems =>
             currentItems.map(item =>
