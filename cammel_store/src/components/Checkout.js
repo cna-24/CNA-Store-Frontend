@@ -5,7 +5,7 @@ import styles from '../styles/Checkout.module.css';
 const Checkout = () => {
   const { cartItems, clearCart } = useCart(); // Assuming there's a method to clear the cart
   const [address, setAddress] = useState(''); // State to store the address
-  const token = process.env.REACT_APP_API_TOKEN;
+  const token = localStorage.getItem('jwt');
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -19,7 +19,6 @@ const Checkout = () => {
     };
 
     //const token = process.env.REACT_APP_API_TOKEN; // Use your actual token
-  const token = localStorage.getItem('jwt');
     try {
       const response = await fetch(process.env.REACT_APP_ORDER_SERVICE_URL, { 
         method: 'POST',
@@ -63,8 +62,8 @@ const Checkout = () => {
         <p>Total: ${calculateTotalCost()}</p>
       </div>
       <h2 className={styles.checkoutTitle}>Checkout</h2>
-      <p> Name:{JSON.stringify(token.username)} </p>
-      <p> Email:{JSON.stringify(token.username)} </p>
+      <p> Name: </p>
+      <p> Email: </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="address">Address:</label>
         <input
