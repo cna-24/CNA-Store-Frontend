@@ -263,12 +263,22 @@
 .item-quantity {
   margin: 0 5px; /* Adjust based on your design */
 }
+
+
 .cart-item-count {
+  position: absolute;
+ 
+  left: -0,999px; /* Less negative to move it rightwards */
+  transform: translate(-100%, -80%); /* Adjust translation to reposition the badge */
   background-color: red;
   color: white;
-  font-size: 0.75rem;
-  padding: 2px 6px;
+  font-size: 14px;
+  line-height: 14px;
+  min-width: 14px;
+  height: 14px;
   border-radius: 50%;
-  margin-left: 4px;
-  vertical-align: super;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }

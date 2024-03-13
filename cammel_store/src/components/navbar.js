@@ -133,10 +133,16 @@ const Navbar = () => {
                         )}
                     </li>
                     <li className="navbar-item" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
-    <Link to="/cart" className="navbar-links">
-        <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> 
-        {totalItemsInCart() > 0 && <span className="cart-item-count">{totalItemsInCart()}</span>} | Cart
-    </Link>
+                    <Link to="/cart" className="navbar-links" style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+  {totalItemsInCart() > 0 && (
+    <span className="cart-item-count">{totalItemsInCart()}</span>
+  )}
+  <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" />
+  | Cart
+</Link>
+
+
+
     {showCartDropdown && (
         <div className="cart-dropdown">
             {cartItems.length > 0 ? (
