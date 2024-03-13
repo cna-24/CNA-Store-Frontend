@@ -82,6 +82,10 @@ const Navbar = () => {
         clearTimeout(hideDropdownTimeoutRef.current);
         setShowCartDropdown(true);
     };
+    const totalItemsInCart = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+      };
+      
     const calculateTotalCost = () => {
         return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
       };
@@ -133,7 +137,8 @@ const Navbar = () => {
                     </li>
                     <li className="navbar-item" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
     <Link to="/cart" className="navbar-links">
-        <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> | Cart
+        <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> 
+        {totalItemsInCart() > 0 && <span className="cart-item-count">{totalItemsInCart()}</span>} | Cart
     </Link>
     {showCartDropdown && (
         <div className="cart-dropdown">
@@ -146,18 +151,18 @@ const Navbar = () => {
                                 <span className="item-quantity">{item.quantity}</span>
                                 <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                             </div>
-                            <span>{item.name} - ${item.price.toFixed(2)}</span>
+                            <span>{item.name} | {item.price.toFixed(2)}€</span>
                         </div>
                     ))}
                     <div className="cart-total">
-                        Total: ${calculateTotalCost()}
+                        Total: {calculateTotalCost()}€
                     </div>
                 </>
             ) : (
                 <span>Your cart is empty.</span>
             )}
             <div className={`cart-dropdown-actions ${cartItems.length > 0 ? 'no-top-border' : ''}`}>
-                <button className="checkout-button" onClick={() => navigate('/checkout')}>Proceed to Checkout →</button>
+                <button className="checkout-button" onClick={() => navigate('/cart')}>Proceed to Checkout →</button>
         </div>
                             </div>
                         )}
