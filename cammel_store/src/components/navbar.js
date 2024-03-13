@@ -19,7 +19,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message] = useState('');
+    const [message, setMessage] = useState('');
+    const [attemptsRemaining, setAttemptsRemaining] = useState(6);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -61,7 +62,8 @@ const Navbar = () => {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(message);
+                    setAttemptsRemaining(prevAttempts => prevAttempts - 1);
+                    throw new Error(response.statusText);
                 }
                 return response.json();
             })
@@ -72,7 +74,7 @@ const Navbar = () => {
                 navigate('/store');
             })
             .catch(error => {
-                console.error('Login error:', error);
+                setMessage('Wrong username or password');
             });
     };
 
@@ -120,6 +122,7 @@ const Navbar = () => {
                                             <input type="text" id="username" name="username" required value={username} onChange={e => setUsername(e.target.value)} />
                                             <label htmlFor="password">Password:</label>
                                             <input type="password" id="password" name="password" required value={password} onChange={e => setPassword(e.target.value)} />
+                                            {message && <p className="error-message">{message} Attempts remaining: {attemptsRemaining}</p>}
                                             <button type="submit">Login</button>
                                         </form>
                                         <Link to="/register" className="register">Register</Link>
