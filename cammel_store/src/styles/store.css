@@ -18,12 +18,18 @@ html * {
     flex-direction: column;
 }
 
+@font-face {
+  font-family: Aceh-Light;
+  src: url("../camelFonts/Aceh-Light.ttf");
+}
+
 #banner-text {
     font-size: 200px;
     letter-spacing: -15px;
     margin: auto;
     margin-bottom: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-family: "Aceh-light",Verdana, Geneva, Tahoma, sans-serif;
     color: #ecc65b;
 }
 
@@ -31,7 +37,7 @@ html * {
     font-size: 30px;
     margin: auto;
     margin-top: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Aceh-light",Verdana, Geneva, Tahoma, sans-serif;
     color: #ecc65b;
 }
 

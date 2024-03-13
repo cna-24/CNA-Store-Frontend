@@ -6,6 +6,8 @@ import '../styles/navbar.css';
 import { useAuth } from './CheckAuth';
 import { useSearch } from './SearchContext';
 import { useNavigate } from 'react-router-dom';
+import camelLogo from '../camelImages/camellogo-transformed-removebg-preview.png'
+//import camelText from '../camelImages/cooltext453914258362390.png'
 
 const Navbar = () => {
     const { user, logout, login } = useAuth();
@@ -14,7 +16,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message] = useState('');
+    const [message] = "Login failed. Please check your username and password.";
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -53,7 +55,7 @@ const Navbar = () => {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Login failed. Please check your username and password.');
+                    throw new Error(message);
                 }
                 return response.json();
             })
@@ -72,7 +74,8 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo">
-                    Camel Store
+                <img src={camelLogo} id="camelLogo" alt="Camel Logo" />
+                  <h3 id="camelStoreLogoText">Camel Store</h3>  
                 </Link>
                 <div className="search-bar">
                 <input type="text" placeholder="Search..." onChange={(e) => setSearchTerm(e.target.value)} />

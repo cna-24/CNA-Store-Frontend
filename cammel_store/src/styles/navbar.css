@@ -1,6 +1,6 @@
 .navbar {
   background: orange;
-  height: 60px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +30,16 @@
   display: flex;
   align-items: center; /* Ensure logo is vertically centered */
   margin: auto;
+}
+
+@font-face {
+  font-family: Aceh-Light;
+  src: url("../camelFonts/Aceh-Light.ttf");
+}
+
+#camelStoreLogoText{
+  font-family: "Aceh-light",Verdana, Geneva, Tahoma, sans-serif;
+  
 }
 
 .search-bar {
@@ -94,6 +104,17 @@
   align-items: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
+}
+
+#camelLogo{
+  width: 77px;
+  height:62px;
+  padding-right: 5px;
+}
+
+#camelText{
+  width: 220px;
+  height:60px;
 }
 
 
