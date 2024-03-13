@@ -134,7 +134,7 @@ const Navbar = () => {
                     </li>
                     <li className="navbar-item" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
     <Link to="/cart" className="navbar-links">
-        <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> | Cart
+        <FontAwesomeIcon icon={faShoppingCart} className="icon-spacing" /> 
         {totalItemsInCart() > 0 && <span className="cart-item-count">{totalItemsInCart()}</span>} | Cart
     </Link>
     {showCartDropdown && (
