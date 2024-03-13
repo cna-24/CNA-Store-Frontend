@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom'; 
 import { useCart } from './CartContext'; // Adjust the path as necessary
 import styles from '../styles/Checkout.module.css';
 
@@ -10,7 +10,7 @@ const Checkout = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const token = localStorage.getItem('jwt');
- 
+  const navigate = useNavigate();
   const decodeJWT = (token) => {
     try {
       const base64Url = token.split('.')[1];
@@ -72,6 +72,7 @@ const Checkout = () => {
 
       alert('Order placed successfully');
       clearCart();
+      navigate('/store');
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Error placing order');
