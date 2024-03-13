@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center; /* Align items vertically */
   width: 100%;
-  max-width: 1200px; /* Adjust max-width for better spacing */
+  /*max-width: 1200px;  Adjust max-width for better spacing */
   padding: 0 20px; /* Add padding on the sides */
   position: relative;
 }
@@ -29,6 +29,7 @@
   font-size: 2rem;
   display: flex;
   align-items: center; /* Ensure logo is vertically centered */
+  margin: auto;
 }
 
 .search-bar {
@@ -37,12 +38,15 @@
   justify-content: center;
   margin: 0 20px;
   position: relative; /* Enables absolute positioning of the search icon inside */
+  max-width: 800px;
 }
 .search-bar input[type="text"] {
   padding: 0.5rem;
   width: 100%; /* Make input take up all available width */
   /* Add padding-right to prevent text from being hidden behind the icon */
   padding-right: 40px; /* Adjust based on the size of your search icon */
+  border-radius: 8px;
+  border-width: 1px;
 }
 
 .search-bar button {
@@ -59,7 +63,7 @@
   display: flex;
   list-style: none;
   text-align: center;
-  margin: 0; /* Reset margin */
+  margin: auto; /* Reset margin */
 }
 
 

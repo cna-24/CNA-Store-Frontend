@@ -105,7 +105,9 @@ const Store = () => {
     return (
       <>
         <div className="camel-card" onClick={openModal}>
-          <img src={imageSrc} alt={camel.name} />
+          <div>
+            <img src={imageSrc} alt={camel.name} />
+          </div>
           <div className='camel-info'>
             <h2>{camel.name}</h2>
             <p>{camel.description}</p>
