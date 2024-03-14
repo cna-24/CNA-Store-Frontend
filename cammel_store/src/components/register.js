@@ -112,7 +112,8 @@ function Register() {
       )}
         {registrationSuccess && (
           <div className="registration-success">
-            You have successfully registered! You will be redirected to the store in a few seconds.
+            You have successfully registered!<br />
+            You will be redirected to the store in a few seconds.
           </div>
         )}
     </div>
