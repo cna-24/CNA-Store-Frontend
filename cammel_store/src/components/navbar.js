@@ -108,28 +108,24 @@ const Navbar = () => {
                     <button type="submit"><FontAwesomeIcon icon={faSearch} /></button>
                 </div>
                 <ul className="navbar-menu">
-                    <li className="navbar-item">
-                        {user ? (
+                    {user ? (
                         <>
-                            <ul className="navbar-menu">
-                                <li className="navbar-item">
-                                    <Link to="/profile" className="navbar-links">
-                                        <FontAwesomeIcon icon={faUser} className="icon-spacing" />
-                                        | Profile
-                                    </Link>
-                                </li>
-                            </ul>
-                            <ul className="navbar-menu">
-                                <li className="navbar-item">
-                                    <div className="navbar-links">
-                                        <span className="login-text" onClick={logout}>
-                                            Logout
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
+                            <li className="navbar-item">
+                                <div className="navbar-links">
+                                    <span className="login-text" onClick={logout}>
+                                        Logout
+                                    </span>
+                                </div>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to="/profile" className="navbar-links">
+                                    <FontAwesomeIcon icon={faUser} className="icon-spacing" />
+                                    | Profile
+                                </Link>
+                            </li>
                         </>
-                        ) : (
+                    ) : (
+                        <li className="navbar-item">
                             <div className="navbar-links">
                                 <FontAwesomeIcon icon={faUser} className="icon-spacing" />
                                 <span className="login-text" onClick={() => setIsLoginFormVisible(!isLoginFormVisible)}>
@@ -149,8 +145,8 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </div>
-                        )}
-                    </li>
+                        </li>
+                    )}
                     <li className="navbar-item" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
                     <Link to="/cart" className="navbar-links" style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
   {totalItemsInCart() > 0 && (
