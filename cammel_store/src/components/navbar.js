@@ -118,7 +118,7 @@ const Navbar = () => {
                                 </div>
                             </li>
                             <li className="navbar-item">
-                                <Link to="/myOrders" className="login-text">My orders</Link>
+                                <Link to="/myOrders" className="navbar-links">My orders</Link>
                             </li>
                             <li className="navbar-item">
                                 <Link to="/profile" className="navbar-links">
