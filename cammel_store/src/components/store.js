@@ -58,7 +58,7 @@ const Store = () => {
           'Authorization': `Bearer ${token}`, // Include the authorization token
         },
         body: JSON.stringify({
-          product: camel.id, // Use the unique identifier for the product
+          product: camel.product_id, // Use the unique identifier for the product
           quantity: 1,
           price: camel.price,
         }),

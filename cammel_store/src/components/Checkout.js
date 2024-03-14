@@ -57,7 +57,7 @@ const Checkout = () => {
 
     
     try {
-      const response = await fetch(process.env.REACT_APP_ORDER_SERVICE_URL, { 
+      const response = await fetch(`${process.env.REACT_APP_ORDER_SERVICE_URL}/orders/process-order`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
