@@ -112,9 +112,11 @@ const Navbar = () => {
                     {user ? (
                     <>
                         <li className="navbar-item">
-                            <button onClick={logout} className="navbar-links">
-                            Logout
-                            </button>
+                            <div className="navbar-links">
+                                <span className="login-text" onClick={logout}>
+                                    Logout
+                                </span>
+                            </div>
                         </li>
                         <li className="navbar-item">
                             <Link to="/profile" className="navbar-links">
