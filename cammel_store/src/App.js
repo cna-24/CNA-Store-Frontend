@@ -11,6 +11,7 @@ import Footer from './components/footer';
 import Cart from './components/cart';
 import Register from './components/register';
 import Profile from './components/profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             <Route path="/store" element={<Store />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           </Routes>
           <Footer />
         </div>
