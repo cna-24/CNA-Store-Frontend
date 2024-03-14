@@ -112,12 +112,12 @@ const Navbar = () => {
                     {user ? (
                     <>
                         <li className="navbar-item">
-                            <button onClick={logout} className="navbar-button">
+                            <button onClick={logout} className="navbar-links">
                             Logout
                             </button>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/user" className="navbar-links">
+                            <Link to="/profile" className="navbar-links">
                             <FontAwesomeIcon icon={faUser} className="icon-spacing" />
                             | Profile
                             </Link>
