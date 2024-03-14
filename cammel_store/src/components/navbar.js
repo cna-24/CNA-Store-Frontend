@@ -109,10 +109,20 @@ const Navbar = () => {
                 </div>
                 <ul className="navbar-menu">
                     <li className="navbar-item">
-                        {user ? (
+                    {user ? (
+                    <>
+                        <li className="navbar-item">
                             <button onClick={logout} className="navbar-button">
-                                <FontAwesomeIcon icon={faUser} className="icon-spacing" /> | {user.username}
+                            Logout
                             </button>
+                        </li>
+                        <li className="navbar-item">
+                            <Link to="/user" className="navbar-links">
+                            <FontAwesomeIcon icon={faUser} className="icon-spacing" />
+                            | Profile
+                            </Link>
+                        </li>
+                    </>
                         ) : (
                             <div className="navbar-links">
                                 <FontAwesomeIcon icon={faUser} className="icon-spacing" />

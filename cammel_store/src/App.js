@@ -10,6 +10,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Cart from './components/cart';
 import Register from './components/register';
+import Profile from './components/profile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/store" element={<Store />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>
