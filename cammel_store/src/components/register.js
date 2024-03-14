@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Register.css';
 
 function Register() {
@@ -8,6 +9,16 @@ function Register() {
   const [address, setAddress] = useState('');
   const [validationError, setValidationError] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (registrationSuccess) {
+      const timer = setTimeout(() => navigate('/store'), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [registrationSuccess, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,7 +112,7 @@ function Register() {
       )}
         {registrationSuccess && (
           <div className="registration-success">
-            You have successfully registered! You can now login.
+            You have successfully registered! You will be redirected to the store in a few seconds.
           </div>
         )}
     </div>
