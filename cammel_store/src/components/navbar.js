@@ -109,24 +109,26 @@ const Navbar = () => {
                 </div>
                 <ul className="navbar-menu">
                     <li className="navbar-item">
-                    {user ? (
-                    <>
-                        <ul className="navbar-menu">
-                            <li className="navbar-item">
-                                <div className="navbar-links">
-                                    <span className="login-text" onClick={logout}>
-                                        Logout
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                        <li className="navbar-item">
-                            <Link to="/profile" className="navbar-links">
-                            <FontAwesomeIcon icon={faUser} className="icon-spacing" />
-                            | Profile
-                            </Link>
-                        </li>
-                    </>
+                        {user ? (
+                        <>
+                            <ul className="navbar-menu">
+                                <li className="navbar-item">
+                                    <Link to="/profile" className="navbar-links">
+                                        <FontAwesomeIcon icon={faUser} className="icon-spacing" />
+                                        | Profile
+                                    </Link>
+                                </li>
+                            </ul>
+                            <ul className="navbar-menu">
+                                <li className="navbar-item">
+                                    <div className="navbar-links">
+                                        <span className="login-text" onClick={logout}>
+                                            Logout
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </>
                         ) : (
                             <div className="navbar-links">
                                 <FontAwesomeIcon icon={faUser} className="icon-spacing" />
