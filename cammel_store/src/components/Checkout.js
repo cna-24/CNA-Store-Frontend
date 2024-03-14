@@ -46,15 +46,6 @@ const Checkout = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const orderData = {
-      products: cartItems.map((item) => ({
-        product: item.product_id,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-      address: address,
-    };
-
     
     try {
       const response = await fetch(`${process.env.REACT_APP_ORDER_SERVICE_URL}/orders/process-order`, { 
@@ -63,7 +54,6 @@ const Checkout = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(orderData),
       });
 
       if (!response.ok) {
