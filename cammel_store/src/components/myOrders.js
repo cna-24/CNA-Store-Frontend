@@ -19,7 +19,7 @@ const MyOrders = () => {
 
             try {
                 //const response = await fetch(`${process.env.REACT_APP_ORDER_SERVICE_URL}/orders/myorders`, {
-                const response = await fetch(`${process.env.REACT_APP_ORDER_SERVICE_URL}/myorders`, {
+                const response = await fetch(`${process.env.REACT_APP_ORDER_SERVICE_URL}/orders/myorders`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
